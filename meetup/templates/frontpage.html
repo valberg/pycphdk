@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if meetup %}
+
+        Næste meetup:<br />
+
+        {{ meetup.datetime|date:_("l d. F")}}<br />
+
+        {% for talk in meetup.talks.all %}
+            {{ talk.title }} af {{ talk.talker.name }}
+        {% empty %}
+            Der er ikke nogen talks endnu! Meld dig til at give en kort talk om
+            noget du synes er fedt <a href="">her</a>
+        {% endfor %}
+
+    {% else %}
+
+        Der er desværre ikke nogen meetups på vej.
+
+        <a href="">Opret en her!</a>
+
+    {% endif %}
+
+{% endblock %}
